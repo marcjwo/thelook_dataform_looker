@@ -354,6 +354,7 @@ view: order_items_output_post {
     sql: ${TABLE}.user_longitude ;;
   }
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [distribtution_center_name, first_name, last_name, product_name]
   }

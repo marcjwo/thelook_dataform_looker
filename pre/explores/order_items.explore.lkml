@@ -1,7 +1,8 @@
 include: "/pre/views/*.view"
 
 explore: order_items_pre {
-  label: "(1) Orders, Items and Users"
+  group_label: "Marcwo Bi Fabric"
+  label: "(1) Orders, Items and Users - Model in Looker"
   view_name: order_items
 
   join: order_facts {
