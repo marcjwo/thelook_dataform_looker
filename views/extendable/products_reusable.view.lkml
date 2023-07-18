@@ -1,30 +1,34 @@
-view: products {
-  sql_table_name: `@{GCP_PROJECT}.@{PRE_DATASET}.products_output_pre` ;;
+view: products_reuseable {
+  extension: required
   view_label: "Products"
   ### DIMENSIONS ###
 
-  dimension: id {
+  dimension: product_id {
+    view_label: "Products"
     label: "ID"
-    primary_key: yes
+    # primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.product_id ;;
   }
 
   dimension: category {
+    view_label: "Products"
     label: "Category"
-    sql: TRIM(${TABLE}.category) ;;
+    sql: TRIM(${TABLE}.product_category) ;;
     drill_fields: [department, brand, item_name]
   }
 
   dimension: item_name {
+    view_label: "Products"
     label: "Item Name"
-    sql: TRIM(${TABLE}.name) ;;
+    sql: TRIM(${TABLE}.product_name) ;;
     drill_fields: [id]
   }
 
   dimension: brand {
+    view_label: "Products"
     label: "Brand"
-    sql: TRIM(${TABLE}.brand) ;;
+    sql: TRIM(${TABLE}.product_brand) ;;
     drill_fields: [item_name]
     link: {
       label: "Website"
@@ -114,9 +118,10 @@ view: products {
   }
 
   dimension: retail_price {
+    view_label: "Products"
     label: "Retail Price"
     type: number
-    sql: ${TABLE}.retail_price ;;
+    sql: ${TABLE}.product_retail_price ;;
     action: {
       label: "Update Price"
       url: "https://us-central1-sandbox-trials.cloudfunctions.net/ecomm_inventory_writeback"
@@ -158,7 +163,7 @@ view: products {
       }
       param: {
         name: "product_id"
-        value: "{{ id._value }}"
+        value: "{{ product_id._value }}"
       }
       param: {
         name: "security_key"
@@ -168,30 +173,35 @@ view: products {
   }
 
   dimension: department {
+    view_label: "Products"
     label: "Department"
-    sql: TRIM(${TABLE}.department) ;;
+    sql: TRIM(${TABLE}.product_department) ;;
   }
 
   dimension: sku {
+    view_label: "Products"
     label: "SKU"
-    sql: ${TABLE}.sku ;;
+    sql: ${TABLE}.product_sku ;;
   }
 
   dimension: distribution_center_id {
+    view_label: "Products"
     label: "Distribution Center ID"
     type: number
-    sql: CAST(${TABLE}.distribution_center_id AS INT64) ;;
+    sql: CAST(${TABLE}.product_distribution_center_id AS INT64) ;;
   }
 
   ## MEASURES ##
 
   measure: count {
+    view_label: "Products"
     label: "Count"
     type: count
     drill_fields: [detail*]
   }
 
   measure: brand_count {
+    view_label: "Products"
     label: "Brand Count"
     type: count_distinct
     sql: ${brand} ;;
@@ -199,6 +209,7 @@ view: products {
   }
 
   measure: category_count {
+    view_label: "Products"
     label: "Category Count"
     alias: [category.count]
     type: count_distinct
@@ -207,6 +218,7 @@ view: products {
   }
 
   measure: department_count {
+    view_label: "Products"
     label: "Department Count"
     alias: [department.count]
     type: count_distinct
@@ -214,13 +226,13 @@ view: products {
     drill_fields: [department, detail2*, -department_count] # don't show because it will always be 1
   }
 
-  set: detail {
-    fields: [id, item_name, brand, category, department, retail_price, customers.count, orders.count, order_items.count, inventory_items.count]
-  }
+  # set: detail {
+  #   fields: [id, item_name, brand, category, department, retail_price, customers.count, orders.count, order_items.count, inventory_items.count]
+  # }
 
-  set: detail2 {
-    fields: [category_count, brand_count, department_count, count, customers.count, orders.count, order_items.count, inventory_items.count, products.count]
-  }
+  # set: detail2 {
+  #   fields: [category_count, brand_count, department_count, count, customers.count, orders.count, order_items.count, inventory_items.count, products.count]
+  # }
 }
 
 

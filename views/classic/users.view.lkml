@@ -1,6 +1,9 @@
+include: "/views/extendable/users_reuseable.view.lkml"
+
 view: users {
-  sql_table_name: `@{GCP_PROJECT}.@{PRE_DATASET}.users_output_pre` ;;
+  sql_table_name: `@{GCP_PROJECT}.@{ORDERS_OUTPUT}.users_output` ;;
   view_label: "Users"
+  # extends: [users_reuseable]
   ## Demographics ##
 
   dimension: id {

@@ -1,7 +1,6 @@
 connection: "@{CONNECTION_NAME}"
 
-include: "/pre/explores/order_items.explore.lkml"
-include: "/post/explores/order_items_post.explore.lkml"
+include: "/explores/*.explore"
 
 # include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project

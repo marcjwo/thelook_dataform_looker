@@ -2,7 +2,7 @@
 view: distribution_centers {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `@{GCP_PROJECT}.@{PRE_DATASET}.distribution_centers_pre` ;;
+  sql_table_name: `@{GCP_PROJECT}.@{ORDERS_OUTPUT}.distribution_centers_output` ;;
   view_label: "Distribution Centers"
   dimension: location {
     type: location

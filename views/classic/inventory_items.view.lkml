@@ -1,5 +1,5 @@
 view: inventory_items {
-  sql_table_name: `@{GCP_PROJECT}.@{PRE_DATASET}.inventory_items_output_pre` ;;
+  sql_table_name: `@{GCP_PROJECT}.@{ORDERS_OUTPUT}.inventory_items_output` ;;
   view_label: "Inventory Items"
   ## DIMENSIONS ##
 

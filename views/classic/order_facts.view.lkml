@@ -2,7 +2,7 @@
 view: order_facts {
   view_label: "Order Facts"
   derived_table: {
-    explore_source: order_items_pre {
+    explore_source: order_items_classic {
       column: order_id {field: order_items.order_id_no_actions }
       column: items_in_order { field: order_items.count }
       column: order_amount { field: order_items.total_sale_price }

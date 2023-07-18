@@ -1,6 +1,6 @@
-include: "/pre/views/*.view"
+include: "/views/classic/*.*"
 
-explore: order_items_pre {
+explore: order_items_classic {
   group_label: "Marcwo Bi Fabric"
   label: "(1) Orders, Items and Users - Model in Looker"
   view_name: order_items
@@ -27,12 +27,12 @@ explore: order_items_pre {
     sql_on: ${order_items.user_id} = ${users.id} ;;
   }
 
-  # join: user_order_facts {
-  #   view_label: "Users Facts"
-  #   type: left_outer
-  #   relationship: many_to_one
-  #   sql_on: ${user_order_facts.user_id} = ${order_items.user_id} ;;
-  # }
+  join: user_order_facts {
+    view_label: "Users Facts"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${user_order_facts.user_id} = ${order_items.user_id} ;;
+  }
 
   join: products {
     view_label: "Products"

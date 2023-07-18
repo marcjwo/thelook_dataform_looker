@@ -1,5 +1,5 @@
 view: order_items {
-  sql_table_name: `@{GCP_PROJECT}.@{PRE_DATASET}.order_items_output_pre` ;;
+  sql_table_name: `@{GCP_PROJECT}.@{ORDERS_OUTPUT}.order_items_output` ;;
   view_label: "Order Items"
   ########## IDs, Foreign Keys, Counts ###########
 
